@@ -10,14 +10,18 @@ for(var i=0;i<n;i++)
 {
     document.querySelectorAll(".drum")[i].addEventListener("click",function()
     {
-        var x=this.innerHTML;
+        var x=this.innerText;
         makeSound(x);
+        buttonAnimation(x);
+        // console.log(x);
     });
+
 }
 
-document.addEventListener("keydown",function(event)
+document.addEventListener("keypress",function(event)
 {
    makeSound(event.key);
+   buttonAnimation(event.key);
 });
 
 function makeSound(key)
@@ -62,4 +66,14 @@ function makeSound(key)
             default:
                 break;
         }
+}
+
+function buttonAnimation(key)
+{
+  document.querySelector("."+key).classList.add("pressed");
+  
+  setTimeout(function()
+  {
+    document.querySelector("."+key).classList.remove("pressed");
+  },120 );
 }
